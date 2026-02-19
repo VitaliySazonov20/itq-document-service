@@ -1,5 +1,6 @@
 package com.itq.document.entity;
 
+import com.itq.document.dto.DocumentCreateRequest;
 import com.itq.document.entity.Enum.Status;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -33,15 +34,15 @@ public class Document {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status" , nullable = false)
-    private Status status;
+    private Status status = Status.DRAFT;
 
     @CreationTimestamp
     @Column(name = "created_at" , nullable = false, updatable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at" , nullable = false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -49,5 +50,17 @@ public class Document {
 
     @OneToOne(mappedBy = "document", cascade = CascadeType.ALL)
     private Registry registry;
+
+    private String generateUniqueNumber(){
+        return "DOC-"+UUID.randomUUID().toString().substring(0,8).toUpperCase();
+    }
+
+    public static Document fromRequest(DocumentCreateRequest request){
+        Document document = new Document();
+        document.setAuthor(request.getAuthor());
+        document.setTitle(request.getTitle());
+        document.setUniqueNumber(document.generateUniqueNumber());
+        return document;
+    }
 
 }
