@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.30.xsd">
+
+    <changeSet id="03-create-registry-table" author="vitaliy">
+        <createTable tableName="registry">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="document_id" type="UUID">
+                <constraints nullable="false"
+                             unique="true"
+                             foreignKeyName="fk_registry_document"
+                             references="documents(id)"/>
+            </column>
+            <column name="approved_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="approved_by" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="idx_registry_document_id" tableName="registry">
+            <column name="document_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
