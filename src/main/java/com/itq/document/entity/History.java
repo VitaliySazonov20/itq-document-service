@@ -17,13 +17,17 @@ public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private BigInteger id;
+    private Long id;
 
-    @Column(name = "document_id" , nullable = false, insertable = false, updatable = false)
-    private UUID documentId;
+
+//    @Column(name = "document_id" , nullable = false, insertable = false, updatable = false)
+//    private UUID documentId;
+    @ManyToOne
+    @JoinColumn(name = "document_id", nullable = false)
+    private Document document;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "action")
+    @Column(name = "action" , nullable = false)
     private Action action;
 
     @Column(name = "comment")
@@ -33,7 +37,7 @@ public class History {
     private String initiatedBy;
 
     @CreationTimestamp
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
 }

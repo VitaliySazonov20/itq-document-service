@@ -14,12 +14,16 @@ public class Registry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
-    @Column(name = "document_id", nullable = false, unique = true, insertable = false, updatable = false)
-    private UUID documentId;
+//    @Column(name = "document_id", nullable = false, unique = true, insertable = false, updatable = false)
+//    private UUID documentId;
 
-    @Column(name = "approved_at", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "document_id", nullable = false, unique = true)
+    private Document document;
+
+    @Column(name = "approved_at", nullable = false, updatable = false)
     private LocalDateTime approvedAt;
 
     @Column(name = "approved_by", nullable = false)
