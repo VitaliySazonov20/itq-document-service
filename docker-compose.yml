@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: itq-postgres
+    environment:
+      POSTGRES_USER: itq_user
+      POSTGRES_PASSWORD: itq_password
+      POSTGRES_DB: itq_docs
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
