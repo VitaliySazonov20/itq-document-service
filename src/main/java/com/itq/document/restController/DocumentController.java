@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -72,5 +73,22 @@ public class DocumentController {
         return ResponseEntity.ok(response);
     }
 
-    
+    @GetMapping("/search")
+    public ResponseEntity<Page<DocumentBatchResponse>> searchForDocumentsWithFilters(
+            @RequestParam(required = false) Status status,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate fromDate,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate toDate,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "createdAt") String sortBy,
+            @RequestParam(defaultValue = "desc") String sortDirection
+            ){
+        Pageable pageable = PageRequest.of(page,size,Sort.by(Sort.Direction.fromString(sortDirection), sortBy));
+
+        Page<Document> documentPage = documentService.searchDocuments(status,author,fromDate,toDate,pageable);
+        Page<DocumentBatchResponse> responsePage = documentPage.map(DocumentBatchResponse::fromDocument);
+        return ResponseEntity.ok(responsePage);
+    }
+
 }

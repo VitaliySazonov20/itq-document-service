@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -148,6 +149,24 @@ public class DocumentService {
         DocumentApproveResponse response = new DocumentApproveResponse();
         response.setResults(results);
         return response;
+    }
+
+    @Transactional
+    public Page<Document> searchDocuments(Status status, String author,
+                                          LocalDate fromDate, LocalDate toDate,
+                                          Pageable pageable){
+        LocalDateTime fromDateTime = null;
+        LocalDateTime toDateTime = null;
+
+        if (fromDate != null) {
+            fromDateTime = fromDate.atStartOfDay();  // 2026-02-20 00:00:00
+        }
+
+        if (toDate != null) {
+            toDateTime = toDate.atTime(23, 59, 59);  // 2026-02-20 23:59:59
+        }
+
+        return documentRepository.searchDocuments(status,author,fromDateTime,toDateTime,pageable);
     }
 
 }
