@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.*;
 
 @Service
 public class DocumentService {
@@ -101,6 +102,7 @@ public class DocumentService {
 
         DocumentSubmitResponse response = new DocumentSubmitResponse();
         response.setResults(results);
+
         return response;
     }
 
@@ -148,6 +150,7 @@ public class DocumentService {
 
         DocumentApproveResponse response = new DocumentApproveResponse();
         response.setResults(results);
+
         return response;
     }
 
@@ -167,6 +170,44 @@ public class DocumentService {
         }
 
         return documentRepository.searchDocuments(status,author,fromDateTime,toDateTime,pageable);
+    }
+
+    public ConcurrentTestResponse runConcurrentApprovalTest(UUID documentId, int threads, int attempts){
+        ExecutorService executorService = Executors.newFixedThreadPool(threads);
+        List<Future<ApproveResult>> futures = new ArrayList<>();
+        for (int i = 0; i < attempts; i++){
+            futures.add(executorService.submit(()->
+                    processSingleDocumentForApproval(documentId, "concurrent-test-user")
+            ));
+        }
+
+        Map<ApproveResult, Integer> resultCounts = new HashMap<>();
+
+        for (Future<ApproveResult> future: futures){
+            try {
+                ApproveResult result = future.get();
+                resultCounts.merge(result,1,Integer::sum);
+            } catch (Exception e) {
+                resultCounts.merge(ApproveResult.REGISTRY_ERROR,1,Integer::sum);
+            }
+        }
+        executorService.shutdown();
+
+        Document document = documentRepository.findById(documentId).orElse(null);
+        boolean hasRegistry = registryRepository.findByDocumentId(documentId).isPresent();
+
+        ConcurrentTestResponse response = new ConcurrentTestResponse();
+        response.setDocumentId(documentId);
+        response.setTotalAttempts(attempts);
+        response.setConflicted(resultCounts.getOrDefault(ApproveResult.CONFLICT,0));
+        response.setSuccessful(resultCounts.getOrDefault(ApproveResult.SUCCESS,0));
+        response.setRegistryErrors(resultCounts.getOrDefault(ApproveResult.REGISTRY_ERROR,0));
+        response.setNotFound(resultCounts.getOrDefault(ApproveResult.NOT_FOUND,0));
+
+        response.setFinalStatus(document !=null? document.getStatus() : null);
+        response.setHasRegistryEntry(hasRegistry);
+
+        return response;
     }
 
 }

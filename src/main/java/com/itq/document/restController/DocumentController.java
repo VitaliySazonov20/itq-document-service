@@ -4,6 +4,7 @@ import com.itq.document.dto.*;
 import com.itq.document.entity.Document;
 import com.itq.document.entity.Enum.Status;
 import com.itq.document.service.DocumentService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -68,7 +69,8 @@ public class DocumentController {
     }
 
     @PostMapping("/approve")
-    public ResponseEntity<DocumentApproveResponse> approveAllDocuments(@RequestBody DocumentApproveRequest approveRequest){
+    public ResponseEntity<DocumentApproveResponse> approveAllDocuments(
+            @RequestBody DocumentApproveRequest approveRequest){
         DocumentApproveResponse response = documentService.approveDocuments(approveRequest);
         return ResponseEntity.ok(response);
     }
@@ -90,5 +92,6 @@ public class DocumentController {
         Page<DocumentBatchResponse> responsePage = documentPage.map(DocumentBatchResponse::fromDocument);
         return ResponseEntity.ok(responsePage);
     }
+
 
 }
