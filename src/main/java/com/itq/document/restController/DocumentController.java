@@ -1,9 +1,6 @@
 package com.itq.document.restController;
 
-import com.itq.document.dto.DocumentBatchResponse;
-import com.itq.document.dto.DocumentCreateRequest;
-import com.itq.document.dto.DocumentCreationResponse;
-import com.itq.document.dto.DocumentGetResponse;
+import com.itq.document.dto.*;
 import com.itq.document.entity.Document;
 import com.itq.document.service.DocumentService;
 import org.springframework.data.domain.Page;
@@ -61,6 +58,9 @@ public class DocumentController {
         return ResponseEntity.ok(uuids);
     }
 
-//    @PostMapping("/submit")
-//    public ResponseEntity<?> submitAllDocuments(@RequestBody){}
+    @PostMapping("/submit")
+    public ResponseEntity<?> submitAllDocuments(@RequestBody DocumentSubmitRequest submitRequest){
+        DocumentSubmitResponse response = documentService.submitDocuments(submitRequest);
+        return ResponseEntity.ok(response);
+    }
 }
