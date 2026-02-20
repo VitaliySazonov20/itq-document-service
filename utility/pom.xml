@@ -47,7 +47,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <skip>true</skip> <!-- This is not a Spring Boot app -->
+<!--                    <skip>true</skip> &lt;!&ndash; This is not a Spring Boot app &ndash;&gt;-->
+                    <mainClass>com.itq.utility.MainUtilityClass</mainClass>
                 </configuration>
             </plugin>
             <plugin>
