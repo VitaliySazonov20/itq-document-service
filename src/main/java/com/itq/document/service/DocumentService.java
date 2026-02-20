@@ -6,6 +6,8 @@ import com.itq.document.entity.Enum.Action;
 import com.itq.document.entity.History;
 import com.itq.document.repository.DocumentRepository;
 import com.itq.document.repository.HistoryRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,4 +45,15 @@ public class DocumentService {
         List<History> historyList = document.getHistoryList();
         return document;
     }
+
+    @Transactional
+    public Page<Document> getPageableDocumentsByIds(List<UUID> uuidList, Pageable pageable){
+        return documentRepository.findByIdIn(uuidList,pageable);
+    }
+
+    public List<UUID> getAllDocumentIds(){
+        return documentRepository.findAllIds();
+
+    }
+
 }
