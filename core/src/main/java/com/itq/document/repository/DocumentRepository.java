@@ -24,8 +24,8 @@ public interface DocumentRepository extends JpaRepository<Document, UUID> {
     @Query("SELECT d from Document d WHERE " +
         "(:status IS NULL OR d.status = :status) AND " +
         "(:author IS NULL OR d.author = :author) AND " +
-        "(COALESCE(:fromDate,'') = '' OR d.createdAt >= :fromDate) AND "+
-        "(COALESCE(:toDate,'') = '' OR d.createdAt <= :fromDate)")
+        "(COALESCE(:fromDate,'') = '' OR d.createdAt >= CAST(:fromDate AS timestamp)) AND "+
+        "(COALESCE(:toDate,'') = '' OR d.createdAt <= CAST(:toDate AS timestamp))")
     Page<Document> searchDocuments(
             @Param("status")Status status,
             @Param("author") String author,
