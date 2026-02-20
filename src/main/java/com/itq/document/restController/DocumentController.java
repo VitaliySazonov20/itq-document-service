@@ -2,14 +2,14 @@ package com.itq.document.restController;
 
 import com.itq.document.dto.DocumentCreateRequest;
 import com.itq.document.dto.DocumentCreationResponse;
+import com.itq.document.dto.DocumentGetResponse;
 import com.itq.document.entity.Document;
 import com.itq.document.service.DocumentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/documents")
@@ -27,4 +27,13 @@ public class DocumentController {
                 DocumentCreationResponse.fromDocument(documentService.createDocument(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(documentCreationResponse);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DocumentGetResponse> getDocument(@PathVariable UUID id){
+        DocumentGetResponse response = DocumentGetResponse
+                .fromDocument(documentService.getDocument(id));
+        return ResponseEntity.ok(response);
+    }
+
+
 }

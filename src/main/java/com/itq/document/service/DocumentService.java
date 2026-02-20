@@ -9,6 +9,9 @@ import com.itq.document.repository.HistoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class DocumentService {
 
@@ -23,6 +26,7 @@ public class DocumentService {
     @Transactional
     public Document createDocument(DocumentCreateRequest documentCreateRequest){
         Document document = Document.fromRequest(documentCreateRequest);
+        document.setUpdatedAt(document.getCreatedAt());
         documentRepository.save(document);
         History history = new History();
         history.setDocument(document);
@@ -30,6 +34,13 @@ public class DocumentService {
         history.setComment("Document created");
         history.setInitiatedBy(documentCreateRequest.getInitiator());
         historyRepository.save(history);
+        return document;
+    }
+
+    @Transactional
+    public Document getDocument(UUID id){
+        Document document = documentRepository.findById(id).orElseThrow();
+        List<History> historyList = document.getHistoryList();
         return document;
     }
 }
