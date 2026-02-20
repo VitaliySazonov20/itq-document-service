@@ -2,11 +2,13 @@ package com.itq.document.restController;
 
 import com.itq.document.dto.*;
 import com.itq.document.entity.Document;
+import com.itq.document.entity.Enum.Status;
 import com.itq.document.service.DocumentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,8 +61,16 @@ public class DocumentController {
     }
 
     @PostMapping("/submit")
-    public ResponseEntity<?> submitAllDocuments(@RequestBody DocumentSubmitRequest submitRequest){
+    public ResponseEntity<DocumentSubmitResponse> submitAllDocuments(@RequestBody DocumentSubmitRequest submitRequest){
         DocumentSubmitResponse response = documentService.submitDocuments(submitRequest);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/approve")
+    public ResponseEntity<DocumentApproveResponse> approveAllDocuments(@RequestBody DocumentApproveRequest approveRequest){
+        DocumentApproveResponse response = documentService.approveDocuments(approveRequest);
+        return ResponseEntity.ok(response);
+    }
+
+    
 }
