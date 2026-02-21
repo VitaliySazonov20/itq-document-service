@@ -3,6 +3,7 @@ package com.itq.document.worker;
 import com.itq.document.entity.Document;
 import com.itq.document.entity.Enum.Status;
 import com.itq.document.service.DocumentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
 @Component
 public class ApproveWorker {
 
@@ -36,10 +38,15 @@ public class ApproveWorker {
                 null,
                 pageable);
 
+        log.info("Starting approval worker with batchSize: {}", batchSize);
+        int processed = 0;
         List<Document> documentList =documentPage.getContent();
         for(Document doc: documentList){
             documentService.processSingleDocumentForApproval(doc.getId(),
                     "Approval Worker");
+            processed++;
+            log.info("Progress: {}/{} documents processed for approval ({}%)",processed,documentList.size(),
+                    processed*100/documentList.size());
         }
     }
 }

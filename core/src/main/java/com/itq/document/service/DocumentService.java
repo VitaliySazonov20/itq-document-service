@@ -11,6 +11,7 @@ import com.itq.document.entity.Registry;
 import com.itq.document.repository.DocumentRepository;
 import com.itq.document.repository.HistoryRepository;
 import com.itq.document.repository.RegistryRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,10 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.*;
 
+@Slf4j
 @Service
 public class DocumentService {
+
 
     private final DocumentRepository documentRepository;
     private final HistoryRepository historyRepository;
@@ -36,9 +39,13 @@ public class DocumentService {
 
     @Transactional
     public Document createDocument(DocumentCreateRequest documentCreateRequest){
+        log.info("Creating document");
+        long startTime = System.currentTimeMillis();
         Document document = Document.fromRequest(documentCreateRequest);
         document.setUpdatedAt(document.getCreatedAt());
         documentRepository.save(document);
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Document created in {}ms", duration);
         History history = new History();
         history.setDocument(document);
         history.setAction(Action.CREATE);
@@ -91,14 +98,20 @@ public class DocumentService {
     public DocumentSubmitResponse submitDocuments(DocumentSubmitRequest request){
         Map<UUID, SubmissionResult> results = new HashMap<>();
 
+        long startTime = System.currentTimeMillis();
+        log.info("Starting to process {} documents for submission",request.getDocumentIds().size());
         for(UUID id : request.getDocumentIds()){
             try{
                 SubmissionResult result = processSingleDocumentForSubmission(id, request.getInitiator());
                 results.put(id,result);
+                log.info("Successfully submitted document {}", id);
             } catch (Exception e){
                 results.put(id,SubmissionResult.ERROR);
+                log.error("Could not submit document {} : {}", id, e.getMessage());
             }
         }
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Finished processing {} documents in {}ms", request.getDocumentIds().size(), duration);
 
         DocumentSubmitResponse response = new DocumentSubmitResponse();
         response.setResults(results);
@@ -139,14 +152,21 @@ public class DocumentService {
     public DocumentApproveResponse approveDocuments(DocumentApproveRequest request){
         Map<UUID, ApproveResult> results = new HashMap<>();
 
+        long startTime = System.currentTimeMillis();
+        log.info("Starting to process {} documents for approval",request.getDocumentIds().size());
+
         for(UUID id : request.getDocumentIds()){
             try{
                 ApproveResult result = processSingleDocumentForApproval(id, request.getInitiator());
                 results.put(id,result);
+                log.info("Successfully approved document {}", id);
             } catch (Exception e){
                 results.put(id,ApproveResult.REGISTRY_ERROR);
+                log.error("Could not approve document {} : {}", id, e.getMessage());
             }
         }
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Finished processing {} documents in {}ms", request.getDocumentIds().size(), duration);
 
         DocumentApproveResponse response = new DocumentApproveResponse();
         response.setResults(results);
