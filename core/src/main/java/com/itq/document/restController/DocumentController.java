@@ -30,7 +30,8 @@ public class DocumentController {
     }
 
     @PostMapping
-    public ResponseEntity<DocumentCreationResponse> createDocument(@RequestBody DocumentCreateRequest request){
+    public ResponseEntity<DocumentCreationResponse> createDocument(
+            @Valid @RequestBody DocumentCreateRequest request){
         DocumentCreationResponse documentCreationResponse =
                 DocumentCreationResponse.fromDocument(documentService.createDocument(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(documentCreationResponse);
@@ -63,14 +64,14 @@ public class DocumentController {
     }
 
     @PostMapping("/submit")
-    public ResponseEntity<DocumentSubmitResponse> submitAllDocuments(@RequestBody DocumentSubmitRequest submitRequest){
+    public ResponseEntity<DocumentSubmitResponse> submitAllDocuments(@Valid @RequestBody DocumentSubmitRequest submitRequest){
         DocumentSubmitResponse response = documentService.submitDocuments(submitRequest);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/approve")
     public ResponseEntity<DocumentApproveResponse> approveAllDocuments(
-            @RequestBody DocumentApproveRequest approveRequest){
+            @Valid @RequestBody DocumentApproveRequest approveRequest){
         DocumentApproveResponse response = documentService.approveDocuments(approveRequest);
         return ResponseEntity.ok(response);
     }

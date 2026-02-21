@@ -11,6 +11,8 @@ import com.itq.document.entity.Registry;
 import com.itq.document.repository.DocumentRepository;
 import com.itq.document.repository.HistoryRepository;
 import com.itq.document.repository.RegistryRepository;
+import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -64,6 +66,9 @@ public class DocumentService {
 
     @Transactional
     public Page<Document> getPageableDocumentsByIds(List<UUID> uuidList, Pageable pageable){
+        if (uuidList == null || uuidList.isEmpty()) {
+            throw new ValidationException("Document IDs list cannot be empty");
+        }
         return documentRepository.findByIdIn(uuidList,pageable);
     }
 
@@ -193,6 +198,10 @@ public class DocumentService {
     }
 
     public ConcurrentTestResponse runConcurrentApprovalTest(UUID documentId, int threads, int attempts){
+        if (threads > attempts) {
+            throw new ValidationException("Threads cannot exceed number of attempts");
+        }
+
         ExecutorService executorService = Executors.newFixedThreadPool(threads);
         List<Future<ApproveResult>> futures = new ArrayList<>();
         for (int i = 0; i < attempts; i++){
