@@ -151,7 +151,7 @@ public class DocumentService {
             registryRepository.save(registry);
             historyRepository.save(history);
             documentRepository.save(document);
-            
+
             return ApproveResult.SUCCESS;
         }
         catch (Exception e) {
