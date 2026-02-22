@@ -1,0 +1,480 @@
+2026-02-22 13:06:01 [main] INFO  c.i.d.c.DocumentControllerTest - Starting DocumentControllerTest using Java 21.0.8 with PID 22100 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:06:01 [main] INFO  c.i.d.c.DocumentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:06:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:06:02 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:06:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-22 13:06:03 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@b8a144e
+2026-02-22 13:06:03 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-22 13:06:03 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:06:03 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:06:04 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:06:04 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:06:04 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:06:04 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:06:04 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:06:04 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:06:04 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:06:04 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:06:04 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:06:04 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:06:06 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:06:06 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-22 13:06:07 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:06:07 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:06:07 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:06:08 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:06:08 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:06:08 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22 13:06:09 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:06:10 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-02-22 13:06:10 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-02-22 13:06:10 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 3 ms
+2026-02-22 13:06:10 [main] INFO  c.i.d.c.DocumentControllerTest - Started DocumentControllerTest in 8.478 seconds (process running for 9.607)
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Document created in 32ms
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:06:10 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document e42b7cf0-01cc-4e39-987c-a98c1b35cff3
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 21ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Starting to process 3 documents for submission
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 1872920d-3282-4316-baf9-38a763f2d169
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document e42b7cf0-01cc-4e39-987c-a98c1b35cff3
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Finished processing 3 documents in 17ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 5284387e-f5e5-44e8-859a-9c332f857cd0
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 12ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 1bd9a744-1e78-45af-b49f-7651e948311b
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 13ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Starting to process 4 documents for approval
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 5284387e-f5e5-44e8-859a-9c332f857cd0
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 1bd9a744-1e78-45af-b49f-7651e948311b
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 0ba57be8-06a1-4ed3-a09e-3efd93df66db
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:06:11 [main] INFO  c.i.document.service.DocumentService - Finished processing 4 documents in 40ms
+2026-02-22 13:06:11 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.itq.document.DocumentServiceApplicationTests]: DocumentServiceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22 13:06:11 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.itq.document.DocumentServiceApplication for test class com.itq.document.DocumentServiceApplicationTests
+2026-02-22 13:06:11 [main] INFO  c.i.d.DocumentServiceApplicationTests - Starting DocumentServiceApplicationTests using Java 21.0.8 with PID 22100 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:06:11 [main] INFO  c.i.d.DocumentServiceApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:06:11 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:06:11 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:06:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-02-22 13:06:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3d8da9da
+2026-02-22 13:06:11 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-02-22 13:06:11 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:06:11 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:06:11 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:06:11 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:06:11 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:06:11 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:06:11 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:06:11 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:06:11 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:06:11 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:06:11 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:06:11 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:06:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:06:11 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:06:11 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:06:11 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:06:11 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:06:11 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:06:11 [main] INFO  c.i.d.DocumentServiceApplicationTests - Started DocumentServiceApplicationTests in 0.701 seconds (process running for 11.291)
+2026-02-22 13:06:12 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:06:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-22 13:06:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-22 13:06:12 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:06:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-02-22 13:06:12 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-02-22 13:15:06 [main] INFO  c.i.d.c.DocumentControllerTest - Starting DocumentControllerTest using Java 21.0.8 with PID 25532 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:15:06 [main] INFO  c.i.d.c.DocumentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:15:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:15:07 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:15:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-22 13:15:07 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7345f97d
+2026-02-22 13:15:07 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-22 13:15:07 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:15:08 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:15:08 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:15:08 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:15:08 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:15:08 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:15:08 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:15:08 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:15:08 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:15:08 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:15:08 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:15:08 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:15:10 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:15:10 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-22 13:15:11 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:15:11 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:15:11 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:15:12 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:15:12 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:15:12 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22 13:15:13 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:15:13 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-02-22 13:15:13 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-02-22 13:15:13 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 3 ms
+2026-02-22 13:15:13 [main] INFO  c.i.d.c.DocumentControllerTest - Started DocumentControllerTest in 7.441 seconds (process running for 8.476)
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Document created in 23ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 2e9b1123-4049-46f2-8933-6e46c914fa0d
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 21ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Starting to process 3 documents for submission
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document f7f0e916-1df4-450b-9114-4736445bfc86
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 2e9b1123-4049-46f2-8933-6e46c914fa0d
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Finished processing 3 documents in 20ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 93b3f3f7-ec04-46ea-b6f1-663222596c4d
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 12ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 8d3a9160-539b-4910-b7b0-bda34a21751b
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 10ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Starting to process 4 documents for approval
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 93b3f3f7-ec04-46ea-b6f1-663222596c4d
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 8d3a9160-539b-4910-b7b0-bda34a21751b
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 0b026209-2d63-48b5-8592-d086a3a05dfe
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:15:14 [main] INFO  c.i.document.service.DocumentService - Finished processing 4 documents in 35ms
+2026-02-22 13:15:14 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.itq.document.DocumentServiceApplicationTests]: DocumentServiceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22 13:15:14 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.itq.document.DocumentServiceApplication for test class com.itq.document.DocumentServiceApplicationTests
+2026-02-22 13:15:14 [main] INFO  c.i.d.DocumentServiceApplicationTests - Starting DocumentServiceApplicationTests using Java 21.0.8 with PID 25532 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:15:14 [main] INFO  c.i.d.DocumentServiceApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:15:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:15:14 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 13 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:15:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-02-22 13:15:14 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@5cc43bff
+2026-02-22 13:15:14 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-02-22 13:15:14 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:15:14 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:15:14 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:15:14 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:15:14 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:15:14 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:15:14 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:15:14 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:15:14 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:15:14 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:15:14 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:15:14 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:15:14 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:15:14 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:15:14 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:15:14 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:15:14 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:15:14 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:15:15 [main] INFO  c.i.d.DocumentServiceApplicationTests - Started DocumentServiceApplicationTests in 0.634 seconds (process running for 9.941)
+2026-02-22 13:15:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:15:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-22 13:15:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-22 13:15:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:15:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-02-22 13:15:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-02-22 13:23:56 [main] INFO  c.i.d.c.DocumentControllerTest - Starting DocumentControllerTest using Java 21.0.8 with PID 23672 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:23:56 [main] INFO  c.i.d.c.DocumentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:23:56 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:23:56 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 55 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:23:57 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-22 13:23:57 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7345f97d
+2026-02-22 13:23:57 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-22 13:23:57 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:23:58 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:23:58 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:23:58 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:23:58 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:23:58 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:23:58 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:23:58 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:23:58 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:23:58 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:23:58 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:23:58 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:24:01 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:24:01 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-22 13:24:01 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:24:01 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:24:01 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:24:02 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:24:02 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:24:02 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22 13:24:03 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:24:04 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-02-22 13:24:04 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-02-22 13:24:04 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 4 ms
+2026-02-22 13:24:04 [main] INFO  c.i.d.c.DocumentControllerTest - Started DocumentControllerTest in 8.605 seconds (process running for 9.599)
+2026-02-22 13:24:04 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:24:04 [main] INFO  c.i.document.service.DocumentService - Document created in 23ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document d46c8b45-acc5-4ebc-b297-44fde14b2870
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 19ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Starting to process 3 documents for submission
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 4a764ba2-7517-4bee-98c7-6d1984df3d02
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document d46c8b45-acc5-4ebc-b297-44fde14b2870
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Finished processing 3 documents in 18ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document a98b2b78-8ea9-4ff3-8c31-aa0078aa6c05
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 13ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 29f01d4c-b124-4117-a20c-0035ccb79893
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 16ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Starting to process 4 documents for approval
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully approved document a98b2b78-8ea9-4ff3-8c31-aa0078aa6c05
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 29f01d4c-b124-4117-a20c-0035ccb79893
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 2b89abd2-26eb-4b6a-8e37-ead06710382d
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:24:05 [main] INFO  c.i.document.service.DocumentService - Finished processing 4 documents in 39ms
+2026-02-22 13:24:05 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.itq.document.DocumentServiceApplicationTests]: DocumentServiceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22 13:24:05 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.itq.document.DocumentServiceApplication for test class com.itq.document.DocumentServiceApplicationTests
+2026-02-22 13:24:05 [main] INFO  c.i.d.DocumentServiceApplicationTests - Starting DocumentServiceApplicationTests using Java 21.0.8 with PID 23672 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:24:05 [main] INFO  c.i.d.DocumentServiceApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:24:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:24:05 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:24:05 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-02-22 13:24:05 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@1a68af
+2026-02-22 13:24:05 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-02-22 13:24:05 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:24:05 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:24:05 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:24:05 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:24:05 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:24:05 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:24:05 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:24:05 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:24:05 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:24:05 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:24:05 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:24:05 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:24:05 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:24:05 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:24:05 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:24:05 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:24:05 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:24:05 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:24:06 [main] INFO  c.i.d.DocumentServiceApplicationTests - Started DocumentServiceApplicationTests in 0.761 seconds (process running for 11.243)
+2026-02-22 13:24:06 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:24:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-22 13:24:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-22 13:24:06 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:24:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-02-22 13:24:06 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2026-02-22 13:31:27 [main] INFO  c.i.d.c.DocumentControllerTest - Starting DocumentControllerTest using Java 21.0.8 with PID 24492 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:31:27 [main] INFO  c.i.d.c.DocumentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:31:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:31:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:31:28 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-22 13:31:28 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7345f97d
+2026-02-22 13:31:28 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-22 13:31:28 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:31:29 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:31:29 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:31:29 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:31:29 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:31:29 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:31:29 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:31:29 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:31:29 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:31:29 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:31:29 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:31:29 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:31:30 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:31:30 [main] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-02-22 13:31:30 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:31:30 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:31:30 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:31:31 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:31:31 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:31:31 [main] INFO  o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-22 13:31:32 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:31:33 [main] INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2026-02-22 13:31:33 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2026-02-22 13:31:33 [main] INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 2 ms
+2026-02-22 13:31:33 [main] INFO  c.i.d.c.DocumentControllerTest - Started DocumentControllerTest in 6.827 seconds (process running for 7.888)
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Document created in 26ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 7d7297fe-b1be-4487-a47a-e3355fed29fc
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 23ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Starting to process 3 documents for submission
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 0a72262b-25b0-40a8-855b-ecd4b9e5077a
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 7d7297fe-b1be-4487-a47a-e3355fed29fc
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Finished processing 3 documents in 23ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document 12557cc6-3143-49f6-929e-c72bd0a835d6
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 13ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Document created in 0ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Starting to process 1 documents for submission
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully submitted document c5f11cad-1396-4677-a302-b89164395e22
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Finished processing 1 documents in 14ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Creating document
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Document created in 1ms
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Starting to process 4 documents for approval
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 12557cc6-3143-49f6-929e-c72bd0a835d6
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully approved document c5f11cad-1396-4677-a302-b89164395e22
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 12f13dc4-497b-434c-9d01-9e0aca8c2d2f
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Successfully approved document 00000000-0000-0000-0000-000000000000
+2026-02-22 13:31:34 [main] INFO  c.i.document.service.DocumentService - Finished processing 4 documents in 34ms
+2026-02-22 13:31:34 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.itq.document.DocumentServiceApplicationTests]: DocumentServiceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-02-22 13:31:34 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.itq.document.DocumentServiceApplication for test class com.itq.document.DocumentServiceApplicationTests
+2026-02-22 13:31:34 [main] INFO  c.i.d.DocumentServiceApplicationTests - Starting DocumentServiceApplicationTests using Java 21.0.8 with PID 24492 (started by vital in D:\Java projects\ITQ\itq-document-service\core)
+2026-02-22 13:31:34 [main] INFO  c.i.d.DocumentServiceApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-02-22 13:31:34 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-22 13:31:34 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 3 JPA repository interfaces.
+2026-02-22 13:31:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2026-02-22 13:31:34 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@1a68af
+2026-02-22 13:31:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2026-02-22 13:31:34 [main] INFO  liquibase.database - Set default schema name to public
+2026-02-22 13:31:34 [main] INFO  liquibase.changelog - Reading from public.databasechangelog
+2026-02-22 13:31:34 [main] INFO  liquibase.ui - Database is up to date, no changesets to execute
+2026-02-22 13:31:34 [main] INFO  liquibase.util - UPDATE SUMMARY
+2026-02-22 13:31:34 [main] INFO  liquibase.util - Run:                          0
+2026-02-22 13:31:34 [main] INFO  liquibase.util - Previously run:               4
+2026-02-22 13:31:34 [main] INFO  liquibase.util - Filtered out:                 0
+2026-02-22 13:31:34 [main] INFO  liquibase.util - -------------------------------
+2026-02-22 13:31:34 [main] INFO  liquibase.util - Total change sets:            4
+2026-02-22 13:31:34 [main] INFO  liquibase.util - Update summary generated
+2026-02-22 13:31:34 [main] INFO  liquibase.command - Command execution complete
+2026-02-22 13:31:34 [main] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-02-22 13:31:35 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-22 13:31:35 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-22 13:31:35 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/itq_docs]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: itq_docs/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-22 13:31:35 [main] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-22 13:31:35 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:31:35 [main] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-22 13:31:35 [main] INFO  c.i.d.DocumentServiceApplicationTests - Started DocumentServiceApplicationTests in 0.767 seconds (process running for 9.574)
+2026-02-22 13:31:35 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:31:35 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-22 13:31:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-22 13:31:36 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-22 13:31:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2026-02-22 13:31:36 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.

@@ -1,0 +1,225 @@
+# Document Service
+
+Сервис для управления документами с поддержкой статусов (DRAFT → SUBMITTED → APPROVED), историей действий и реестром утверждений.
+
+## Стек технологий
+
+- Java 21
+- Spring Boot 4.0.2
+- PostgreSQL 15
+- Liquibase
+- Maven
+- Docker
+
+## Запуск проекта
+
+### 1. Запуск PostgreSQL через Docker
+
+```bash
+docker-compose up -d
+```
+Будет создан контейнер с PostgreSQL:
+- База данных: itq_docs
+- Пользователь: itq_user
+- Пароль: itq_password
+- Порт: 5432
+
+### 2. Запуск основного сервиса (core)
+
+#### PowerShell (рекомендуется)
+```bash
+cd core
+./mvnw spring-boot:run
+```
+#### Command Prompt (CMD)
+```bash
+cd core
+mvnw spring-boot:run
+```
+
+Сервис будет доступен по адресу: http://localhost:8080
+
+### 3. Запуск утилиты для генерации документов (utility)
+Утилита создаёт N документов через API сервиса.
+
+```bash
+cd utility
+java -jar target/utility-0.0.1-SNAPSHOT.jar
+```
+
+Перед запуском утилиты убедитесь, что основной сервис запущен.
+
+Настройка количества документов:
+
+- Создайте файл generator-config.txt в корне проекта
+- Укажите в нём число документов (например, 100)
+- Если файл отсутствует, будет создан автоматически со значением 100
+
+## Конфигурация
+
+Основные настройки в core/src/main/resources/application.properties:
+
+```
+# Размер пачки для фоновых задач
+worker.batch-size=50
+
+# Cron-расписания для воркеров (каждые 5 минут)
+worker.submit-cron=0 */5 * * * *
+worker.approve-cron=0 */5 * * * *
+```
+
+## API Endpoints
+
+| Метод | URL | Описание |
+|-------|-----|----------|
+| POST | `/api/documents` | Создать документ (статус DRAFT) |
+| GET | `/api/documents/{id}` | Получить документ с историей |
+| GET | `/api/documents?ids=...` | Получить документы по списку ID (с пагинацией) |
+| POST | `/api/documents/submit` | Отправить документы на согласование (DRAFT → SUBMITTED) |
+| POST | `/api/documents/approve` | Утвердить документы (SUBMITTED → APPROVED) |
+| GET | `/api/documents/search` | Поиск по статусу, автору, дате создания |
+| POST | `/api/test/concurrent-approve` | Тест конкурентного утверждения |
+
+> **Примечание:** Поиск по дате осуществляется по полю `created_at`.
+
+### 1. Создание документа
+`
+POST /api/documents
+`
+
+Request Body:
+```json
+{
+  "author": "Иван Иванов",
+  "title": "Отчёт за февраль",
+  "initiator": "ivan.ivanov@company.com"
+}
+```
+
+### 2.Получение документа по ID
+
+`GET /api/documents/{id}`
+
+Пример:`/api/documents/123e4567-e89b-12d3-a456-426614174000`
+
+### 3. Пакетное получение документов
+`GET /api/documents?ids=...&page=...&size=...`
+
+Пример:
+`/api/documents?ids=123e4567-e89b-12d3-a456-426614174000,223e4567-e89b-12d3-a456-426614174001&page=0&size=20`
+
+Параметры:
+- `ids` - список UUID через запятую (обязательный)
+- `page` - номер страницы (по умолчанию 0)
+- `size` - размер страницы (по умолчанию 20)
+
+### 4. Получение всех ID документов
+
+`GET /api/documents/ids`
+
+### 5. Отправка на согласование
+
+`POST /api/documents/submit`
+
+Request body:
+```json
+{
+    "documentIds": [
+        "123e4567-e89b-12d3-a456-426614174000",
+        "223e4567-e89b-12d3-a456-426614174001"
+    ],
+    "initiator": "petr.petrov@company.com"
+}
+```
+
+### 6. Утверждение документов
+
+`POST /api/documents/approve`
+
+Request body:
+```json
+{
+    "documentIds": [
+        "123e4567-e89b-12d3-a456-426614174000",
+        "223e4567-e89b-12d3-a456-426614174001"
+    ],
+    "initiator": "petr.petrov@company.com"
+}
+```
+### 7. Поиск документов
+
+`GET /api/documents/search`
+
+Пример:
+`/api/documents/search?status=DRAFT&author=Иван&fromDate=2026-02-15&toDate=2026-02-22&page=0&size=20&sortBy=createdAt&sortDirection=desc`
+
+Параметры (все опциональны):
+
+- `status` - статус документа (DRAFT, SUBMITTED, APPROVED)
+- `author` - автор (частичное совпадение)
+- `fromDate` - начальная дата (ISO, например 2026-02-15)
+- `toDate` - конечная дата (ISO, например 2026-02-22)
+- `page` - номер страницы (по умолчанию 0)
+- `size` - размер страницы (по умолчанию 20)
+- `sortBy` - поле сортировки (по умолчанию createdAt)
+- `sortDirection `- направление (asc или desc, по умолчанию desc)
+
+### 8. Тест конкурентного утверждения
+
+`POST /api/test/concurrent-approve`
+
+Request body:
+```json
+{
+    "documentId": "123e4567-e89b-12d3-a456-426614174000",
+    "threads": 5,
+    "attempts": 10
+}
+```
+
+Параметры:
+
+- `documentId` - ID документа (обязательный)
+- `threads` - количество потоков (≥2, по умолчанию 5)
+- `attempts` - количество попыток (≥2, по умолчанию 10)
+
+## Логирование
+
+Логи записываются в папку `logs/` в корне проекта:
+
+- `logs/document-service.log` — логи основного сервиса
+- `logs/utility.log` — логи утилиты генерации
+
+### Что можно увидеть в логах:
+
+- Создание документа и время выполнения
+- Прогресс пакетной обработки (сколько обработано/осталось)
+- Результаты работы фоновых воркеров
+- Ошибки валидации и конфликты статусов
+
+Пример лога фоновой обработки:
+
+```2026-02-21 18:15:00 [scheduling-1] INFO c.i.d.worker.SubmitWorker - Progress: 3/5 documents processed (60%)```
+
+
+## Миграции БД (Liquibase)
+
+Миграции выполняются автоматически при запуске приложения.
+Файлы миграций находятся в: `core/src/main/resources/db/changelog/`
+
+Схема создаётся с нуля автоматически. При изменении структуры БД создаются новые changeset'ы.
+
+## Тестирование
+
+Запуск тестов:
+
+```bash
+cd core
+./mvnw test
+```
+### Тесты покрывают:
+
+- Happy path: создание и получение документа
+- Пакетный submit с частичными результатами (успех/конфликт/не найдено)
+- Пакетный approve с частичными результатами (включая ошибку реестра)
+- Откат approve при ошибке записи в реестр

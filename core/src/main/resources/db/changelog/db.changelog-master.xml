@@ -8,5 +8,6 @@
     <include file="db/changelog/changeset-01-create-document-table.xml"/>
     <include file="db/changelog/changeset-02-create-history-table.xml"/>
     <include file="db/changelog/changeset-03-create-registry-table.xml"/>
+    <include file="db/changelog/changeset-04-add-document-indexes.xml"/>
 
 </databaseChangeLog>

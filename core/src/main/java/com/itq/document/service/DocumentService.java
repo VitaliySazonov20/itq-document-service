@@ -126,32 +126,37 @@ public class DocumentService {
 
     @Transactional
     public ApproveResult processSingleDocumentForApproval(UUID id, String initiator){
-        Document document = documentRepository.findById(id).orElse(null);
-        if(document == null){
-            return ApproveResult.NOT_FOUND;
+        try {
+            Document document = documentRepository.findById(id).orElse(null);
+            if(document == null){
+                return ApproveResult.NOT_FOUND;
+            }
+            if (document.getStatus() != Status.SUBMITTED){
+                return ApproveResult.CONFLICT;
+            }
+
+            document.setStatus(Status.APPROVED);
+
+            History history = new History();
+            history.setDocument(document);
+            history.setAction(Action.APPROVE);
+            history.setInitiatedBy(initiator);
+            history.setComment("Document approved");
+
+            Registry registry = new Registry();
+            registry.setDocument(document);
+            registry.setApprovedBy(initiator);
+            registry.setApprovedAt(LocalDateTime.now());
+
+            registryRepository.save(registry);
+            historyRepository.save(history);
+            documentRepository.save(document);
+            
+            return ApproveResult.SUCCESS;
         }
-        if (document.getStatus() != Status.SUBMITTED){
-            return ApproveResult.CONFLICT;
+        catch (Exception e) {
+            return ApproveResult.REGISTRY_ERROR;
         }
-
-        document.setStatus(Status.APPROVED);
-
-        History history = new History();
-        history.setDocument(document);
-        history.setAction(Action.APPROVE);
-        history.setInitiatedBy(initiator);
-        history.setComment("Document approved");
-
-        Registry registry = new Registry();
-        registry.setDocument(document);
-        registry.setApprovedBy(initiator);
-        registry.setApprovedAt(LocalDateTime.now());
-
-        documentRepository.save(document);
-        historyRepository.save(history);
-        registryRepository.save(registry);
-
-        return ApproveResult.SUCCESS;
     }
 
     public DocumentApproveResponse approveDocuments(DocumentApproveRequest request){
