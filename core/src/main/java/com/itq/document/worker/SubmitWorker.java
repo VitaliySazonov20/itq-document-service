@@ -2,6 +2,7 @@ package com.itq.document.worker;
 
 import com.itq.document.entity.Document;
 import com.itq.document.entity.Enum.Status;
+import com.itq.document.service.DocumentHelperService;
 import com.itq.document.service.DocumentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,12 +19,14 @@ import java.util.List;
 public class SubmitWorker {
 
     private final DocumentService documentService;
+    private final DocumentHelperService documentHelperService;
 
     private final int batchSize;
 
-    public SubmitWorker(DocumentService documentService,
+    public SubmitWorker(DocumentService documentService, DocumentHelperService documentHelperService,
                         @Value("${worker.batch-size:5}") int batchSize) {
         this.documentService = documentService;
+        this.documentHelperService = documentHelperService;
         this.batchSize = batchSize;
     }
 
@@ -42,7 +45,7 @@ public class SubmitWorker {
         List<Document> documentList =documentPage.getContent();
         int processed = 0;
         for(Document doc: documentList){
-            documentService.processSingleDocumentForSubmission(doc.getId(),
+            documentHelperService.processSingleDocumentForSubmission(doc.getId(),
                     "Submission Worker");
             processed++;
             log.info("Progress: {}/{} documents processed for submission ({}%)",processed,documentList.size(),

@@ -32,11 +32,13 @@ public class DocumentService {
     private final DocumentRepository documentRepository;
     private final HistoryRepository historyRepository;
     private final RegistryRepository registryRepository;
+    private final DocumentHelperService documentHelperService;
 
-    public DocumentService(DocumentRepository documentRepository, HistoryRepository historyRepository, RegistryRepository registryRepository){
+    public DocumentService(DocumentRepository documentRepository, HistoryRepository historyRepository, RegistryRepository registryRepository, DocumentHelperService documentHelperService){
         this.documentRepository = documentRepository;
         this.historyRepository = historyRepository;
         this.registryRepository = registryRepository;
+        this.documentHelperService = documentHelperService;
     }
 
     @Transactional
@@ -77,28 +79,6 @@ public class DocumentService {
         return documentRepository.findAllIds();
     }
 
-    @Transactional
-    public SubmissionResult processSingleDocumentForSubmission(UUID id, String initiator){
-        Document document = documentRepository.findById(id).orElse(null);
-        if(document == null){
-            return SubmissionResult.NOT_FOUND;
-        }
-        if (document.getStatus() != Status.DRAFT){
-            return SubmissionResult.CONFLICT;
-        }
-
-        document.setStatus(Status.SUBMITTED);
-        History history = new History();
-        history.setDocument(document);
-        history.setAction(Action.SUBMIT);
-        history.setInitiatedBy(initiator);
-        history.setComment("Document submitted for approval");
-
-        documentRepository.save(document);
-        historyRepository.save(history);
-
-        return SubmissionResult.SUCCESS;
-    }
 
     public DocumentSubmitResponse submitDocuments(DocumentSubmitRequest request){
         Map<UUID, SubmissionResult> results = new HashMap<>();
@@ -107,7 +87,7 @@ public class DocumentService {
         log.info("Starting to process {} documents for submission",request.getDocumentIds().size());
         for(UUID id : request.getDocumentIds()){
             try{
-                SubmissionResult result = processSingleDocumentForSubmission(id, request.getInitiator());
+                SubmissionResult result = documentHelperService.processSingleDocumentForSubmission(id, request.getInitiator());
                 results.put(id,result);
                 log.info("Successfully submitted document {}", id);
             } catch (Exception e){
@@ -124,41 +104,6 @@ public class DocumentService {
         return response;
     }
 
-    @Transactional
-    public ApproveResult processSingleDocumentForApproval(UUID id, String initiator){
-        try {
-            Document document = documentRepository.findById(id).orElse(null);
-            if(document == null){
-                return ApproveResult.NOT_FOUND;
-            }
-            if (document.getStatus() != Status.SUBMITTED){
-                return ApproveResult.CONFLICT;
-            }
-
-            document.setStatus(Status.APPROVED);
-
-            History history = new History();
-            history.setDocument(document);
-            history.setAction(Action.APPROVE);
-            history.setInitiatedBy(initiator);
-            history.setComment("Document approved");
-
-            Registry registry = new Registry();
-            registry.setDocument(document);
-            registry.setApprovedBy(initiator);
-            registry.setApprovedAt(LocalDateTime.now());
-
-            registryRepository.save(registry);
-            historyRepository.save(history);
-            documentRepository.save(document);
-
-            return ApproveResult.SUCCESS;
-        }
-        catch (Exception e) {
-            return ApproveResult.REGISTRY_ERROR;
-        }
-    }
-
     public DocumentApproveResponse approveDocuments(DocumentApproveRequest request){
         Map<UUID, ApproveResult> results = new HashMap<>();
 
@@ -167,7 +112,7 @@ public class DocumentService {
 
         for(UUID id : request.getDocumentIds()){
             try{
-                ApproveResult result = processSingleDocumentForApproval(id, request.getInitiator());
+                ApproveResult result = documentHelperService.processSingleDocumentForApproval(id, request.getInitiator());
                 results.put(id,result);
                 log.info("Successfully approved document {}", id);
             } catch (Exception e){
@@ -211,7 +156,7 @@ public class DocumentService {
         List<Future<ApproveResult>> futures = new ArrayList<>();
         for (int i = 0; i < attempts; i++){
             futures.add(executorService.submit(()->
-                    processSingleDocumentForApproval(documentId, "concurrent-test-user")
+                    documentHelperService.processSingleDocumentForApproval(documentId, "concurrent-test-user")
             ));
         }
 

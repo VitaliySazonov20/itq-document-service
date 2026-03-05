@@ -36,6 +36,9 @@ public class DocumentServiceTest {
     @InjectMocks
     private DocumentService documentService;
 
+    @InjectMocks
+    private DocumentHelperService documentHelperService;
+
     private UUID documentId;
     private Document submittedDocument;
 
@@ -61,7 +64,7 @@ public class DocumentServiceTest {
         when(registryRepository.save(any()))
                 .thenThrow(new RuntimeException("Database error"));
 
-        ApproveResult result = documentService.processSingleDocumentForApproval(
+        ApproveResult result = documentHelperService.processSingleDocumentForApproval(
                 documentId, "Test Initiator");
 
         assertEquals(ApproveResult.REGISTRY_ERROR, result);
