@@ -1,7 +1,6 @@
 package com.itq.document.dto;
 
 import com.itq.document.entity.Enum.ApproveResult;
-import com.itq.document.entity.Enum.SubmissionResult;
 import lombok.Data;
 
 import java.util.Map;

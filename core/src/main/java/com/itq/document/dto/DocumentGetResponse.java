@@ -1,17 +1,11 @@
 package com.itq.document.dto;
 
 import com.itq.document.entity.Document;
-import com.itq.document.entity.Enum.Status;
-import com.itq.document.entity.History;
-import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Data
 public class DocumentGetResponse {

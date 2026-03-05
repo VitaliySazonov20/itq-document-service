@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface RegistryRepository extends JpaRepository<Registry,Long> {
-    public Optional<Registry> findByDocumentId(UUID id);
+    Optional<Registry> findByDocumentId(UUID id);
 }

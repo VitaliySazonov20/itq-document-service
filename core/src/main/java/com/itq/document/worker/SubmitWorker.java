@@ -45,7 +45,7 @@ public class SubmitWorker {
         List<Document> documentList =documentPage.getContent();
         int processed = 0;
         for(Document doc: documentList){
-            documentHelperService.processSingleDocumentForSubmission(doc.getId(),
+            documentHelperService.processSingleDocumentForSubmission(doc,
                     "Submission Worker");
             processed++;
             log.info("Progress: {}/{} documents processed for submission ({}%)",processed,documentList.size(),

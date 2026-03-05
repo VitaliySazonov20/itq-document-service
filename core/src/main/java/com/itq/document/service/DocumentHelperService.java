@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 public class DocumentHelperService {
@@ -30,9 +29,8 @@ public class DocumentHelperService {
     }
 
     @Transactional
-    public ApproveResult processSingleDocumentForApproval(UUID id, String initiator){
+    public ApproveResult processSingleDocumentForApproval(Document document, String initiator){
         try {
-            Document document = documentRepository.findById(id).orElse(null);
             if(document == null){
                 return ApproveResult.NOT_FOUND;
             }
@@ -65,8 +63,7 @@ public class DocumentHelperService {
     }
 
     @Transactional
-    public SubmissionResult processSingleDocumentForSubmission(UUID id, String initiator){
-        Document document = documentRepository.findById(id).orElse(null);
+    public SubmissionResult processSingleDocumentForSubmission(Document document, String initiator){
         if(document == null){
             return SubmissionResult.NOT_FOUND;
         }

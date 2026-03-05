@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -19,9 +17,6 @@ public class History {
     @Column(name = "id")
     private Long id;
 
-
-//    @Column(name = "document_id" , nullable = false, insertable = false, updatable = false)
-//    private UUID documentId;
     @ManyToOne
     @JoinColumn(name = "document_id", nullable = false)
     private Document document;

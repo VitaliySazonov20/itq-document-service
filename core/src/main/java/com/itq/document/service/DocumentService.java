@@ -7,11 +7,9 @@ import com.itq.document.entity.Enum.ApproveResult;
 import com.itq.document.entity.Enum.Status;
 import com.itq.document.entity.Enum.SubmissionResult;
 import com.itq.document.entity.History;
-import com.itq.document.entity.Registry;
 import com.itq.document.repository.DocumentRepository;
 import com.itq.document.repository.HistoryRepository;
 import com.itq.document.repository.RegistryRepository;
-import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,7 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 @Slf4j
 @Service
@@ -85,14 +85,17 @@ public class DocumentService {
 
         long startTime = System.currentTimeMillis();
         log.info("Starting to process {} documents for submission",request.getDocumentIds().size());
-        for(UUID id : request.getDocumentIds()){
+
+        List<Document> documentList = documentRepository.findAllById(request.getDocumentIds());
+
+        for(Document doc: documentList){
             try{
-                SubmissionResult result = documentHelperService.processSingleDocumentForSubmission(id, request.getInitiator());
-                results.put(id,result);
-                log.info("Successfully submitted document {}", id);
+                SubmissionResult result = documentHelperService.processSingleDocumentForSubmission(doc, request.getInitiator());
+                results.put(doc.getId(),result);
+                log.info("Successfully submitted document {}", doc.getId());
             } catch (Exception e){
-                results.put(id,SubmissionResult.ERROR);
-                log.error("Could not submit document {} : {}", id, e.getMessage());
+                results.put(doc.getId(),SubmissionResult.ERROR);
+                log.error("Could not submit document {} : {}", doc.getId(), e.getMessage());
             }
         }
         long duration = System.currentTimeMillis() - startTime;
@@ -110,14 +113,15 @@ public class DocumentService {
         long startTime = System.currentTimeMillis();
         log.info("Starting to process {} documents for approval",request.getDocumentIds().size());
 
-        for(UUID id : request.getDocumentIds()){
+        List<Document> documentList = documentRepository.findAllById(request.getDocumentIds());
+        for(Document doc: documentList){
             try{
-                ApproveResult result = documentHelperService.processSingleDocumentForApproval(id, request.getInitiator());
-                results.put(id,result);
-                log.info("Successfully approved document {}", id);
+                ApproveResult result = documentHelperService.processSingleDocumentForApproval(doc, request.getInitiator());
+                results.put(doc.getId(),result);
+                log.info("Successfully approved document {}", doc.getId());
             } catch (Exception e){
-                results.put(id,ApproveResult.REGISTRY_ERROR);
-                log.error("Could not approve document {} : {}", id, e.getMessage());
+                results.put(doc.getId(),ApproveResult.REGISTRY_ERROR);
+                log.error("Could not approve document {} : {}", doc.getId(), e.getMessage());
             }
         }
         long duration = System.currentTimeMillis() - startTime;
@@ -151,12 +155,14 @@ public class DocumentService {
         if (threads > attempts) {
             throw new ValidationException("Threads cannot exceed number of attempts");
         }
-
+        Document document = documentRepository.findById(documentId).orElseThrow(() ->
+                new ValidationException("Document not found with id: " + documentId));
         ExecutorService executorService = Executors.newFixedThreadPool(threads);
         List<Future<ApproveResult>> futures = new ArrayList<>();
+        final Document finalDocument = document;
         for (int i = 0; i < attempts; i++){
             futures.add(executorService.submit(()->
-                    documentHelperService.processSingleDocumentForApproval(documentId, "concurrent-test-user")
+                    documentHelperService.processSingleDocumentForApproval(finalDocument, "concurrent-test-user")
             ));
         }
 
@@ -172,7 +178,7 @@ public class DocumentService {
         }
         executorService.shutdown();
 
-        Document document = documentRepository.findById(documentId).orElse(null);
+        document = documentRepository.findById(documentId).orElse(null);
         boolean hasRegistry = registryRepository.findByDocumentId(documentId).isPresent();
 
         ConcurrentTestResponse response = new ConcurrentTestResponse();

@@ -45,7 +45,7 @@ public class ApproveWorker {
         int processed = 0;
         List<Document> documentList =documentPage.getContent();
         for(Document doc: documentList){
-            documentHelperService.processSingleDocumentForApproval(doc.getId(),
+            documentHelperService.processSingleDocumentForApproval(doc,
                     "Approval Worker");
             processed++;
             log.info("Progress: {}/{} documents processed for approval ({}%)",processed,documentList.size(),
